@@ -9,6 +9,10 @@ function MovieList() {
     const dispatch = useDispatch();
     const movies = useSelector(store => store.moviesReducer);
 
+    function handleClick(movie){
+        history.push(`/details/${movie.id}`)
+    }
+
     useEffect(() => {
         dispatch({ type: 'FETCH_MOVIES' });
     }, []);
@@ -19,9 +23,9 @@ function MovieList() {
             <section className="movies">
                 {movies.map(movie => {
                     return (
-                        <div key={movie.id} >
+                        <div onClick={() => handleClick(movie)} key={movie.id} >
                             <h3>{movie.title}</h3>
-                            <img src={movie.poster} alt={movie.title}/>
+                            <img src={movie.poster} alt={movie.title} />
                         </div>
                     );
                 })}
