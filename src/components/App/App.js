@@ -6,7 +6,7 @@ import MovieDetails from "../MovieDetails/MovieDetails";
 function App() {
   return (
     <div className="App">
-      <h1>The Movies Saga!</h1>
+      <h1 className="mainHeader"></h1>
       <Router>
       <nav>
           <ul>
@@ -14,6 +14,9 @@ function App() {
               <NavLink exact to="/">
                 Home
               </NavLink>
+            </li>
+            <li className="navTitle">
+                The Movie Saga Project
             </li>
             <li>
               <NavLink exact to="/details/:id">

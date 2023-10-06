@@ -2,7 +2,9 @@
   text-align: center;
 }
 
-
+.mainHeader{
+  margin-top: 100px;
+}
 .App-header {
   background-color: #222;
   height: 150px;
@@ -21,4 +23,53 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+/* Navbar */
+nav {
+  background-color: #2d2e36;
+  color: #fff;
+  padding: 15px;
+  font-size: 22px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 100; /* Ensure the navbar appears above other content */
+  transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center; /* Center the list items horizontally */
+}
+
+nav ul li {
+  margin-right: 15%;
+  font-size: 22px;
+  background-color: #787578;
+  padding: 10px 20px 10px 20px;
+  border-radius: 5px;
+}
+.navTitle{
+  background-color: #2d2e36;
+  padding:5px;
+  font-size: 26px;
+}
+
+nav ul li:last-child {
+  margin-right: 0;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #fff;
+  transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+nav ul li a:hover {
+  color: #ca6cc6; /* Change color on hover */
 }

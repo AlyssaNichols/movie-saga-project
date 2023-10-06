@@ -1,35 +1,85 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import './MovieList.css'
-import { useHistory } from 'react-router-dom';
-
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import "./MovieList.css";
+import { useHistory } from "react-router-dom";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import { makeStyles } from '@mui/styles';
 
 function MovieList() {
-    const history = useHistory();
-    const dispatch = useDispatch();
-    const movieList = useSelector(store => store.moviesReducer);
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const movieList = useSelector((store) => store.moviesReducer);
 
+  useEffect(() => {
+    dispatch({ type: "FETCH_MOVIES" });
+  }, []);
+//   const cardStyle = {
+//     width: '230px', // Set the desired width of the card
+//     height: '400px', // Set the desired height of the card
+//     marginBottom: '40px',
+//     borderRadius: '5px',
+//     boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)',
+//     cursor: 'pointer',
+//   };
+//   const imageStyle = {
+//     height: '80%', // Set the desired height of the image
+//     objectFit: 'cover', // Maintain aspect ratio and cover the container
+//   };
 
-    useEffect(() => {
-        dispatch({ type: 'FETCH_MOVIES' });
-    }, []);
+const useStyles = makeStyles({
+    card: {
+      width: '230px',
+      height: '400px',
+      marginBottom: '40px',
+      borderRadius: '5px',
+      boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)',
+      cursor: 'pointer',
+      transition: 'transform 0.2s', // Add a transform transition
+      '&:hover': {
+        transform: 'scale(1.03)', // Add a slight scale-up effect on hover
+      },
+    },
+    image: {
+      height: '80%',
+      objectFit: 'cover',
+    },
+  });
+  const classes = useStyles();
 
-    return (
-        <main>
-            <h1>MovieList</h1>
-            <section className="movies">
-                {movieList.map(movie => {
-                    return (
-                        <div key={movie.id} onClick={() => history.push(`/details/${movie.id}`)}>
-                            <h3>{movie.title}</h3>
-                            <img src={movie.poster} alt={movie.title}  />
-                        </div>
-                    );
-                })}
-            </section>
-        </main>
-
-    );
+  return (
+    <main>
+      <h1>Movie List</h1>
+      <section className="movies">
+        {movieList.map((movie) => {
+          return (
+            <div style={{ marginLeft: '40px', marginRight: '40px' }}
+              key={movie.id}
+              onClick={() => history.push(`/details/${movie.id}`)}
+            >
+              <Card onClick={() => history.push(`/details/${movie.id}`)} className={classes.card}>
+                <CardMedia
+                  component="img"
+                  className={classes.card}
+                  alt={movie.title}
+                //   style={imageStyle}
+                  image={movie.poster}
+                  title={movie.title}
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    {movie.title}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </div>
+          );
+        })}
+      </section>
+    </main>
+  );
 }
 
 export default MovieList;

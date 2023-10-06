@@ -6,7 +6,7 @@ router.get('/:id', (req, res) => {
   console.log('req.params', req.params);
 
 
-  const movieId = req.params.id;
+  const id = req.params.id;
   // Using an aggregate function will return one row with all data 
   const queryText = `
     SELECT 
@@ -24,7 +24,7 @@ router.get('/:id', (req, res) => {
     GROUP BY 
       movies.id;
   `;
-  pool.query(queryText, [movieId])
+  pool.query(queryText, [id])
     .then(result => {
       console.log(`GET details RETURNED:`, result.rows);
       res.send(result.rows[0]);

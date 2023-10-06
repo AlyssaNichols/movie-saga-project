@@ -19,7 +19,7 @@ export default function MovieDetails() {
   useEffect(() => {
     dispatch({
       type: "FETCH_MOVIE_DETAILS",
-      payload: paramsObject.id,
+      payload: paramsObject.id
     });
   }, []);
 
@@ -29,7 +29,7 @@ export default function MovieDetails() {
 
   return (
     <>
-      <h2>Title: {movieTitle}</h2>
+      <h2>{movieTitle ? `Title: ${movieTitle}` : 'No Movie Title Listed'}</h2>
       <img src={moviePoster} />
       <h2>
         Genres: {' '}
