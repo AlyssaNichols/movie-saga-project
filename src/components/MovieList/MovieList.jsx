@@ -7,11 +7,8 @@ import { useHistory } from 'react-router-dom';
 function MovieList() {
     const history = useHistory();
     const dispatch = useDispatch();
-    const movies = useSelector(store => store.moviesReducer);
+    const movieList = useSelector(store => store.moviesReducer);
 
-    function handleClick(movie){
-        history.push(`/details/${movie.id}`)
-    }
 
     useEffect(() => {
         dispatch({ type: 'FETCH_MOVIES' });
@@ -21,11 +18,11 @@ function MovieList() {
         <main>
             <h1>MovieList</h1>
             <section className="movies">
-                {movies.map(movie => {
+                {movieList.map(movie => {
                     return (
-                        <div onClick={() => handleClick(movie)} key={movie.id} >
+                        <div key={movie.id} onClick={() => history.push(`/details/${movie.id}`)}>
                             <h3>{movie.title}</h3>
-                            <img src={movie.poster} alt={movie.title} />
+                            <img src={movie.poster} alt={movie.title}  />
                         </div>
                     );
                 })}

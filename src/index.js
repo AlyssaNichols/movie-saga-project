@@ -14,6 +14,10 @@ import axios from 'axios';
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
+    yield takeEvery('FETCH_MOVIE_DETAILS', fetchMovieDetails);
+    yield takeEvery('FETCH_GENRES', fetchGenres);
+    // yield takeEvery('ADD_MOVIE', addMovie);
+    // yield takeEvery('UPDATE_MOVIE', updateMovie);
 }
 
 function* fetchAllMovies() {
@@ -25,12 +29,52 @@ function* fetchAllMovies() {
 
     } catch {
         console.log('get all error');
+    }   
+}
+function* fetchGenres() {
+    // get genres from the DB
+    try {
+      const genres = yield axios.get('/api/genre');
+      console.log('GET genres:', genres.data);
+      yield put({ type: 'SET_GENRES', payload: genres.data })
+    } catch (err) {
+      console.log('Error getting genres', err);
     }
-        
+  } //
+
+function* fetchMovieDetails(action){
+        console.log('action.payload', action.payload);
+        // movieId from poster click, will be used as URL Param
+        const movieId = action.payload;
+        // get movie details associated with movieId
+        // title, description, poster, genres
+        try{
+          const response = yield axios.get(`/api/details/${movieId}`);
+          console.log('get movie details:', response.data);
+          yield put({ type: 'SET_MOVIE_DETAILS', payload: response.data});
+        } catch (err) {
+          console.log('Error getting movie details', err);
+        } 
 }
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+////                           REDUCERS                           //////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+const movieDetails = ( state = [], action) => {
+    switch (action.type) {
+        case 'SET_MOVIE_DETAILS':
+          return action.payload;
+        default:
+          return state;
+    }
+}
 
 // Used to store movies returned from the server
 const moviesReducer = (state = [], action) => {
@@ -57,6 +101,7 @@ const storeInstance = createStore(
     combineReducers({
         moviesReducer,
         genresReducer,
+        movieDetails
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
