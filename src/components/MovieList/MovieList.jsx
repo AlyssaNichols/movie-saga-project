@@ -16,18 +16,6 @@ function MovieList() {
   useEffect(() => {
     dispatch({ type: "FETCH_MOVIES" });
   }, []);
-//   const cardStyle = {
-//     width: '230px', // Set the desired width of the card
-//     height: '400px', // Set the desired height of the card
-//     marginBottom: '40px',
-//     borderRadius: '5px',
-//     boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)',
-//     cursor: 'pointer',
-//   };
-//   const imageStyle = {
-//     height: '80%', // Set the desired height of the image
-//     objectFit: 'cover', // Maintain aspect ratio and cover the container
-//   };
 
 const useStyles = makeStyles({
     card: {
