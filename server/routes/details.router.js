@@ -4,8 +4,6 @@ const pool = require('../modules/pool')
 
 router.get('/:id', (req, res) => {
   console.log('req.params', req.params);
-
-
   const id = req.params.id;
   // Using an aggregate function will return one row with all data 
   const queryText = `

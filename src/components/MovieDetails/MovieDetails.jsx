@@ -1,49 +1,3 @@
-// import { useHistory, useParams } from "react-router-dom";
-// import { useDispatch } from "react-redux";
-// import { useSelector } from "react-redux";
-// import { useEffect } from "react";
-
-// export default function MovieDetails() {
-//   const dispatch = useDispatch();
-//   const history = useHistory();
-//   const paramsObject = useParams();
-//   const movieDetails = useSelector((store) => store.movieDetails);
-//   console.log(movieDetails);
-
-//   // movieDetails state object as variables
-//   const movieTitle = movieDetails.title;
-//   const moviePoster = movieDetails.poster;
-//   const movieGenreList = movieDetails.genres;
-//   const movieDescription = movieDetails.description;
-
-//   useEffect(() => {
-//     dispatch({
-//       type: "FETCH_MOVIE_DETAILS",
-//       payload: paramsObject.id
-//     });
-//   }, []);
-
-//   function goBack() {
-//     history.push("/");
-//   }
-
-//   return (
-//     <>
-//       <h2>{movieTitle ? `Title: ${movieTitle}` : 'No Movie Title Listed'}</h2>
-//       <img src={moviePoster} />
-//       <h2>
-//         Genres: {' '}
-//         {movieGenreList && movieGenreList.length > 0 ? (
-//           <span>{movieGenreList.join(", ")}</span>
-//         ) : (
-//           <span>No Genres Listed</span>
-//         )}
-//       </h2>
-//       <p>{movieDescription}</p>
-//       <button onClick={goBack}>Back</button>
-//     </>
-//   );
-// }
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -79,7 +33,8 @@ export default function MovieDetails() {
 
   
   return (
-    <>
+    <div>
+        <br />
     <h1>{movieDetails.title} Details</h1>
     <br />
     <br />
@@ -134,6 +89,53 @@ export default function MovieDetails() {
         </Grid>
         </Paper>
     </Container>
-    </>
+    </div>
   );
 }
+////old code before styling
+// import { useHistory, useParams } from "react-router-dom";
+// import { useDispatch } from "react-redux";
+// import { useSelector } from "react-redux";
+// import { useEffect } from "react";
+
+// export default function MovieDetails() {
+//   const dispatch = useDispatch();
+//   const history = useHistory();
+//   const paramsObject = useParams();
+//   const movieDetails = useSelector((store) => store.movieDetails);
+//   console.log(movieDetails);
+
+//   // movieDetails state object as variables
+//   const movieTitle = movieDetails.title;
+//   const moviePoster = movieDetails.poster;
+//   const movieGenreList = movieDetails.genres;
+//   const movieDescription = movieDetails.description;
+
+//   useEffect(() => {
+//     dispatch({
+//       type: "FETCH_MOVIE_DETAILS",
+//       payload: paramsObject.id
+//     });
+//   }, []);
+
+//   function goBack() {
+//     history.push("/");
+//   }
+
+//   return (
+//     <>
+//       <h2>{movieTitle ? `Title: ${movieTitle}` : 'No Movie Title Listed'}</h2>
+//       <img src={moviePoster} />
+//       <h2>
+//         Genres: {' '}
+//         {movieGenreList && movieGenreList.length > 0 ? (
+//           <span>{movieGenreList.join(", ")}</span>
+//         ) : (
+//           <span>No Genres Listed</span>
+//         )}
+//       </h2>
+//       <p>{movieDescription}</p>
+//       <button onClick={goBack}>Back</button>
+//     </>
+//   );
+// }
