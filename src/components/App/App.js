@@ -2,6 +2,7 @@ import { HashRouter as Router, Route, NavLink } from "react-router-dom";
 import "./App.css";
 import MovieList from "../MovieList/MovieList";
 import MovieDetails from "../MovieDetails/MovieDetails";
+import AddMovie from "../AddMovie/AddMovie";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           </ul>
         </nav>
         <Route path="/" exact>
+          <AddMovie />
           <MovieList />
         </Route>
         <Route path="/details/:id" exact>
