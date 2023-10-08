@@ -82,17 +82,5 @@ router.post("/", (req, res) => {
     });
 });
 
-router.put('/:id', (req, res) => {
-  const queryText = `UPDATE "movies"
-                          SET "title" = $1, "description"=$2
-                          WHERE "id" = $3;`;
-  pool.query(queryText, [req.body.title, req.body.description, req.body.id])
-    .then(dbRes => {
-      res.sendStatus(200);
-    })
-    .catch(err => {
-      console.log('error saving to database', err);
-      res.sendStatus(500)
-    })
-})
+
 module.exports = router;
