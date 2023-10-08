@@ -10,20 +10,23 @@ import Button from "@mui/material/Button";
 import { makeStyles } from "@mui/styles";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-function MovieList() {
+export default function MovieList() {
   const history = useHistory();
   const dispatch = useDispatch();
+  // getting the movieList from moviesReducer
   const movieList = useSelector((store) => store.moviesReducer);
-
+// useEffect to fetch all movies. This goes to the fetchMovies saga and sends a put call to teh moviesReducer
   useEffect(() => {
     dispatch({ type: "FETCH_MOVIES" });
   }, []);
 
+  // MUI custom styling for the cards
   const useStyles = makeStyles({
     card: {
       width: "230px",
       height: "400px",
       marginBottom: "40px",
+      backgroundColor: 'black',
       borderRadius: "5px",
       boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
       cursor: "pointer",
@@ -33,7 +36,7 @@ function MovieList() {
       },
     },
     image: {
-      height: "80%",
+      height: "100%",
       objectFit: "cover",
     },
     movieContainer: {
@@ -43,17 +46,51 @@ function MovieList() {
       marginLeft: "-20px", // Counteract default Card margin
       marginRight: "-20px", // Counteract default Card margin
     },
+    // Define a class for the title that will be shown on hover
+    titleOnHover: {
+      visibility: "hidden",
+      position: "absolute",
+      top: "0",
+      left: "0",
+      right: "0",
+      backgroundColor: "rgba(0, 0, 0, 0.7)",
+      color: "white",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      opacity: 0,
+      padding: '10px',
+      transition: "opacity 0.3s ease-in-out",
+    },
+    
+    // Apply this class when the card is hovered to show the title
+    cardHovered: {
+      "&:hover": {
+        "& $titleOnHover": {
+          visibility: "visible",
+          opacity: '.7',
+        },
+      },
+    },
   });
+  // variable for the styling
   const classes = useStyles();
-
+// what is returned on the page. Cards of all the movies that
   return (
     <main>
-      <h1>Movie List</h1>
-      <button className="addMovieButton"
+      <br />
+      <h1 className="listHeader">Movie Collection</h1>
+      <hr />
+      <br />
+      <button
+        className="addMovieButton"
         onClick={() => history.push(`/addMovie/`)}
       >
-        Add Movie Form
+        Add Movie
       </button>
+      <br />
+      <hr />
+      <br />
       <section className={classes.movieContainer}>
         {movieList.map((movie) => {
           return (
@@ -63,18 +100,18 @@ function MovieList() {
             >
               <Card
                 onClick={() => history.push(`/details/${movie.id}`)}
-                className={classes.card}
+                className={`${classes.card} ${classes.cardHovered}`}
               >
-                <CardMedia
+                <CardMedia 
                   component="img"
-                  className={classes.card}
+                  className={classes.image}
                   alt={movie.title}
                   image={movie.poster}
                   title={movie.title}
                 />
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
-                    {movie.title}
+                  <Typography gutterBottom variant="h5" component="div" style={{fontSize: '16px', color: 'white' }} >
+                  <span className={classes.titleOnHover}>{movie.title}</span>
                   </Typography>
                 </CardContent>
               </Card>
@@ -97,4 +134,3 @@ function MovieList() {
   );
 }
 
-export default MovieList;

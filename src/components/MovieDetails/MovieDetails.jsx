@@ -18,8 +18,9 @@ export default function MovieDetails() {
   const dispatch = useDispatch();
   const history = useHistory();
   const paramsObject = useParams();
+  // getting movieDetails from the movieDetails reducer
   const movieDetails = useSelector((store) => store.movieDetails);
-
+  // useEffect to fetch the movie details from the fetchMovieDetails saga that sends the call to the movie details reducer
   useEffect(() => {
     dispatch({
       type: "FETCH_MOVIE_DETAILS",
@@ -27,12 +28,30 @@ export default function MovieDetails() {
     });
   }, []);
 
+  // go back function for the back button- could just do it inline too i suppose
   function goBack() {
     history.push("/");
   }
 
+  function editDetails() {
+    history.push(`/edit/${paramsObject.id}`);
+    dispatch({ type: "SET_EDIT_MOVIE", payload: student });
+  }
+
+  // if no movie title is selected (so basically using the navbar to go to movie details) -
+  // then it will show to please select a movie to see details
+
+  if (!movieDetails.title) {
+    return (
+      <>
+        <br /> <h1>Please Select a Movie to See Details</h1>
+      </>
+    );
+  }
+  // otherwise if movie is selected it will navigate to the details page of that movie
   return (
     <div>
+      <br />
       <h1>{movieDetails.title} Details</h1>
       <br />
       <br />
@@ -57,7 +76,7 @@ export default function MovieDetails() {
               <Card
                 style={{
                   height: "100%",
-                  width: "90%", // Set the desired height (half the parent height)
+                  width: "100%",
                 }}
               >
                 <CardContent>
@@ -83,8 +102,15 @@ export default function MovieDetails() {
                     startIcon={<ArrowBack />}
                     onClick={goBack}
                   >
-                    Back
-                  </Button>
+                    Back to List
+                  </Button> {""}
+                  {/* <Button
+                    variant="contained"
+                    color="error"
+                    onClick={editDetails}
+                  >
+                    Edit Details
+                  </Button> */}
                 </CardContent>
               </Card>
             </Grid>
@@ -94,50 +120,3 @@ export default function MovieDetails() {
     </div>
   );
 }
-////old code before styling
-// import { useHistory, useParams } from "react-router-dom";
-// import { useDispatch } from "react-redux";
-// import { useSelector } from "react-redux";
-// import { useEffect } from "react";
-
-// export default function MovieDetails() {
-//   const dispatch = useDispatch();
-//   const history = useHistory();
-//   const paramsObject = useParams();
-//   const movieDetails = useSelector((store) => store.movieDetails);
-//   console.log(movieDetails);
-
-//   // movieDetails state object as variables
-//   const movieTitle = movieDetails.title;
-//   const moviePoster = movieDetails.poster;
-//   const movieGenreList = movieDetails.genres;
-//   const movieDescription = movieDetails.description;
-
-//   useEffect(() => {
-//     dispatch({
-//       type: "FETCH_MOVIE_DETAILS",
-//       payload: paramsObject.id
-//     });
-//   }, []);
-
-//   function goBack() {
-//     history.push("/");
-//   }
-
-//   return (
-//     <>
-//       <h2>{movieTitle ? `Title: ${movieTitle}` : 'No Movie Title Listed'}</h2>
-//       <img src={moviePoster} />
-//       <h2>
-//         Genres: {' '}
-//         {movieGenreList && movieGenreList.length > 0 ? (
-//           <span>{movieGenreList.join(", ")}</span>
-//         ) : (
-//           <span>No Genres Listed</span>
-//         )}
-//       </h2>
-//       <p>{movieDescription}</p>
-//       <button onClick={goBack}>Back</button>
-//     </>
-//   );
-// }

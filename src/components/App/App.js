@@ -4,24 +4,33 @@ import MovieList from "../MovieList/MovieList";
 import MovieDetails from "../MovieDetails/MovieDetails";
 import AddMovie from "../AddMovie/AddMovie";
 
+
+// navbar has title
+// navbar has links to home, add movie, and details page
+// details page will be blank unless a movie is clicked on first
 function App() {
   return (
     <div className="App">
       <h1 className="mainHeader"></h1>
       <Router>
-      <nav>
+        <nav>
+          <div className="navbar-title">
+            <h1>Movie Saga Project</h1>
+          </div>
           <ul>
             <li>
               <NavLink exact to="/">
                 Home
               </NavLink>
             </li>
-            <li className="navTitle">
-                The Movie Saga Project
+            <li>
+              <NavLink exact to="/addMovie">
+                Add Movie
+              </NavLink>
             </li>
             <li>
               <NavLink exact to="/details/:id">
-                Details
+                Movie Details
               </NavLink>
             </li>
           </ul>
@@ -35,8 +44,8 @@ function App() {
         <Route path="/details/:id" exact>
           <MovieDetails />
         </Route>
-
-        {/* Add Movie page */}
+        {/* <Route path="/edit/:id" exact>
+        </Route> */}
       </Router>
     </div>
   );

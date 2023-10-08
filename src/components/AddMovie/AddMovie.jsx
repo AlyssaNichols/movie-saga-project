@@ -12,18 +12,21 @@ import {
   Paper,
 } from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";
-import AddIcon from '@mui/icons-material/Add';
-
+import AddIcon from "@mui/icons-material/Add";
 
 export default function AddMovie() {
   const history = useHistory();
   const dispatch = useDispatch();
+  // create state for the form inputs
+  // title, image url, description, genre
   const [title, setTitle] = useState("");
   const [poster, setPoster] = useState("");
   const [description, setDescription] = useState("");
   const [genre, setGenre] = useState("");
 
-  const saveMovie = () => {
+  // add function
+  const addMovie = () => {
+    // make sure all text fields are filled
     if (!title || !poster || !description || !genre || genre === 0) {
       alert("Please make sure all fields are filled in before submitting!");
     } else {
@@ -31,18 +34,21 @@ export default function AddMovie() {
         type: "ADD_MOVIE",
         payload: { title, poster, description, genre_id: genre },
       });
+      // head back to home page after
       history.push("/");
     }
   };
 
-  const cancelChanges = () => {
+  // cancel function
+  // sets all inputs blank and send user back to home page
+  const cancelMovie = () => {
     setTitle("");
     setPoster("");
     setDescription("");
     setGenre("");
     history.push("/");
   };
-
+  // what is being returned on the page
   return (
     <Container style={{ marginTop: "16px" }}>
       <Paper elevation={3} style={{ padding: "16px" }}>
@@ -65,15 +71,18 @@ export default function AddMovie() {
         </FormControl>
         <FormControl fullWidth style={{ marginBottom: "16px" }}>
           <TextField
-          multiline
+            multiline
             rows={7}
             aria-label="Movie Description"
             placeholder="Movie Description"
             value={description}
             className="custom-textarea"
             onChange={(e) => setDescription(e.target.value)}
-            style={{ width: "100%", fontFamily: "IBM Plex Sans, sans-serif",
-            fontSize: "1rem" }}
+            style={{
+              width: "100%",
+              fontFamily: "IBM Plex Sans, sans-serif",
+              fontSize: "1rem",
+            }}
           ></TextField>
         </FormControl>
         <FormControl fullWidth style={{ marginBottom: "16px" }}>
@@ -109,14 +118,14 @@ export default function AddMovie() {
               marginRight: "8px",
             }}
             startIcon={<ArrowBack />}
-            onClick={cancelChanges}
+            onClick={cancelMovie}
           >
             Cancel
           </Button>
           <Button
             variant="contained"
             style={{ backgroundColor: "#007bff", color: "white" }}
-            onClick={saveMovie}
+            onClick={addMovie}
             startIcon={<AddIcon />}
           >
             Save
@@ -126,4 +135,3 @@ export default function AddMovie() {
     </Container>
   );
 }
-
