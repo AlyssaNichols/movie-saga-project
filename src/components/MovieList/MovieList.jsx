@@ -89,7 +89,7 @@ export default function MovieList() {
         Add Movie
       </button>
       <br />
-      <hr />
+      <hr /> 
       <br />
       <section className={classes.movieContainer}>
         {movieList.map((movie) => {
