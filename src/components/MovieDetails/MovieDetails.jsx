@@ -13,6 +13,7 @@ import {
   CardMedia,
 } from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function MovieDetails() {
   const dispatch = useDispatch();

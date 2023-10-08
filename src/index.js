@@ -17,7 +17,16 @@ function* rootSaga() {
     yield takeEvery('FETCH_MOVIE_DETAILS', fetchMovieDetails);
     yield takeEvery('FETCH_GENRES', fetchGenres);
     yield takeEvery('ADD_MOVIE', addMovie);
-    // yield takeEvery('UPDATE_MOVIE', updateMovie);
+    yield takeEvery('DELETE_MOVIE', deleteMovie);
+}
+
+function* deleteMovie(action){
+    try {
+        yield axios.delete(`/api/movie/${action.payload}`);
+        yield put({ type: "FETCH_MOVIES" });
+      } catch (error) {
+        console.log("error with DELETE saga request", error);
+      }
 }
 
 function* addMovie(action) {
@@ -25,7 +34,7 @@ function* addMovie(action) {
     try {
         yield axios.post('api/movie', action.payload);
         yield put({
-            type: 'FETCH_MOVIES',
+            type: 'FETCH_MOVIES'
         })
     } catch (err) {
         console.log('ERROR IN POST ADD MOVIE', err);
