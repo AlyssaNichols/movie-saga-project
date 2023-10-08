@@ -1,6 +1,19 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import {
+  Container,
+  TextField,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Button,
+  Paper,
+} from "@mui/material";
+import { ArrowBack } from "@mui/icons-material";
+import AddIcon from '@mui/icons-material/Add';
+
 
 export default function AddMovie() {
   const history = useHistory();
@@ -19,10 +32,6 @@ export default function AddMovie() {
         payload: { title, poster, description, genre_id: genre },
       });
       history.push("/");
-      setTitle("");
-      setPoster("");
-      setDescription("");
-      setGenre("");
     }
   };
 
@@ -31,67 +40,90 @@ export default function AddMovie() {
     setPoster("");
     setDescription("");
     setGenre("");
+    history.push("/");
   };
 
   return (
-    <>
-      <h1>Add Movie</h1>
-      <div className="formContainer">
-        <div>
-          <label htmlFor="title">Title:</label>
-          <input
-            type="text"
-            id="title"
+    <Container style={{ marginTop: "16px" }}>
+      <Paper elevation={3} style={{ padding: "16px" }}>
+        <h1>Add Movie</h1>
+        <FormControl fullWidth style={{ marginBottom: "16px" }}>
+          <TextField
+            label="Title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            fullWidth
           />
-        </div>
-        <div>
-          <label htmlFor="poster">Poster Image URL:</label>
-          <input
-            type="text"
-            id="poster"
+        </FormControl>
+        <FormControl fullWidth style={{ marginBottom: "16px" }}>
+          <TextField
+            label="Poster Image URL"
             value={poster}
             onChange={(e) => setPoster(e.target.value)}
+            fullWidth
           />
-        </div>
-        <div>
-          <label htmlFor="description">Description:</label>
-          <textarea
-            id="description"
-            rows="5"
+        </FormControl>
+        <FormControl fullWidth style={{ marginBottom: "16px" }}>
+          <TextField
+          multiline
+            rows={7}
+            aria-label="Movie Description"
+            placeholder="Movie Description"
             value={description}
+            className="custom-textarea"
             onChange={(e) => setDescription(e.target.value)}
-          ></textarea>
-        </div>
-        <div>
-          <label htmlFor="genre">Genre:</label>
-          <select
+            style={{ width: "100%", fontFamily: "IBM Plex Sans, sans-serif",
+            fontSize: "1rem" }}
+          ></TextField>
+        </FormControl>
+        <FormControl fullWidth style={{ marginBottom: "16px" }}>
+          <InputLabel htmlFor="genre">Genre</InputLabel>
+          <Select
             id="genre"
             value={genre}
             onChange={(e) => setGenre(e.target.value)}
+            fullWidth
           >
-            <option value={0}>Select a genre</option>
-            <option value={1}>Adventure</option>
-            <option value={2}>Animated</option>
-            <option value={3}>Biographical</option>
-            <option value={4}>Comedy</option>
-            <option value={5}>Disaster</option>
-            <option value={6}>Drama</option>
-            <option value={7}>Epic</option>
-            <option value={8}>Fantasy</option>
-            <option value={9}>Musical</option>
-            <option value={10}>Romantic</option>
-            <option value={11}>Science Fiction</option>
-            <option value={12}>Space Opera</option>
-            <option value={13}>Superhero</option>
-          </select>
+            <MenuItem value={0}>Select a genre</MenuItem>
+            <MenuItem value={1}>Adventure</MenuItem>
+            <MenuItem value={2}>Animated</MenuItem>
+            <MenuItem value={3}>Biographical</MenuItem>
+            <MenuItem value={4}>Comedy</MenuItem>
+            <MenuItem value={5}>Disaster</MenuItem>
+            <MenuItem value={6}>Drama</MenuItem>
+            <MenuItem value={7}>Epic</MenuItem>
+            <MenuItem value={8}>Fantasy</MenuItem>
+            <MenuItem value={9}>Musical</MenuItem>
+            <MenuItem value={10}>Romantic</MenuItem>
+            <MenuItem value={11}>Science Fiction</MenuItem>
+            <MenuItem value={12}>Space Opera</MenuItem>
+            <MenuItem value={13}>Superhero</MenuItem>
+          </Select>
+        </FormControl>
+        <div style={{ display: "flex" }}>
+          <Button
+            variant="contained"
+            style={{
+              backgroundColor: "#ff0000",
+              color: "white",
+              marginRight: "8px",
+            }}
+            startIcon={<ArrowBack />}
+            onClick={cancelChanges}
+          >
+            Cancel
+          </Button>
+          <Button
+            variant="contained"
+            style={{ backgroundColor: "#007bff", color: "white" }}
+            onClick={saveMovie}
+            startIcon={<AddIcon />}
+          >
+            Save
+          </Button>
         </div>
-        <div>
-          <button onClick={cancelChanges}>Cancel</button>
-          <button onClick={saveMovie}>Save</button>
-        </div>
-      </div>
-    </>
+      </Paper>
+    </Container>
   );
 }
+

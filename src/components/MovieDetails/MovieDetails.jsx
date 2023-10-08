@@ -31,64 +31,66 @@ export default function MovieDetails() {
     history.push("/");
   }
 
-  
   return (
     <div>
-        <br />
-    <h1>{movieDetails.title} Details</h1>
-    <br />
-    <br />
-    <Container>
-    <Paper elevation={3} style={{ padding: "20px" }}>
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={6}>
-            <Card style={{ display: "flex", justifyContent: "center"  }}>
-              <CardMedia
-                component="img"
-                alt={movieDetails.title}
-                style={{
+      <h1>{movieDetails.title} Details</h1>
+      <br />
+      <br />
+      <Container>
+        <Paper elevation={3} style={{ padding: "20px" }}>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <Card style={{ display: "flex", justifyContent: "center" }}>
+                <CardMedia
+                  component="img"
+                  alt={movieDetails.title}
+                  style={{
                     width: "60%",
                     height: "50%", // Set the desired height (half the parent height)
                     objectFit: "cover", // Maintain aspect ratio and fill the Card
                   }}
-                image={movieDetails.poster}
-              />
-            </Card>
+                  image={movieDetails.poster}
+                />
+              </Card>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <Card
+                style={{
+                  height: "100%",
+                  width: "90%", // Set the desired height (half the parent height)
+                }}
+              >
+                <CardContent>
+                  <Typography variant="h4" gutterBottom>
+                    {movieDetails.title
+                      ? `Title: ${movieDetails.title}`
+                      : "No Movie Title Listed"}
+                  </Typography>
+                  <Typography variant="h5" gutterBottom>
+                    Genres:{" "}
+                    {movieDetails.genres && movieDetails.genres.length > 0 ? (
+                      <span>{movieDetails.genres.join(", ")}</span>
+                    ) : (
+                      <span>No Genres Listed</span>
+                    )}
+                  </Typography>
+                  <Typography variant="body1" gutterBottom>
+                    {movieDetails.description}
+                  </Typography>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    startIcon={<ArrowBack />}
+                    onClick={goBack}
+                  >
+                    Back
+                  </Button>
+                </CardContent>
+              </Card>
+            </Grid>
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <Card  style={{
-                    height: "100%",
-                    width: "90%" // Set the desired height (half the parent height)
-                  }} >
-              <CardContent   >
-                <Typography variant="h4" gutterBottom>
-                  {movieDetails.title ? `Title: ${movieDetails.title}` : "No Movie Title Listed"}
-                </Typography>
-                <Typography variant="h5" gutterBottom>
-                  Genres:{" "}
-                  {movieDetails.genres && movieDetails.genres.length > 0 ? (
-                    <span>{movieDetails.genres.join(", ")}</span>
-                  ) : (
-                    <span>No Genres Listed</span>
-                  )}
-                </Typography>
-                <Typography variant="body1" gutterBottom>
-                  {movieDetails.description}
-                </Typography>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  startIcon={<ArrowBack />}
-                  onClick={goBack}
-                >
-                  Back
-                </Button>
-              </CardContent>
-            </Card>
-          </Grid>
-        </Grid>
         </Paper>
-    </Container>
+      </Container>
     </div>
   );
 }

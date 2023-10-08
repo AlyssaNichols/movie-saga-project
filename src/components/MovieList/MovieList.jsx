@@ -36,6 +36,13 @@ function MovieList() {
       height: "80%",
       objectFit: "cover",
     },
+    movieContainer: {
+      display: "flex",
+      justifyContent: "center",
+      flexWrap: "wrap", // Allow movies to wrap to the next line
+      marginLeft: "-20px", // Counteract default Card margin
+      marginRight: "-20px", // Counteract default Card margin
+    },
   });
   const classes = useStyles();
 
@@ -47,7 +54,7 @@ function MovieList() {
       >
         Add Movie Form
       </button>
-      <section className="movies">
+      <section className={classes.movieContainer}>
         {movieList.map((movie) => {
           return (
             <div

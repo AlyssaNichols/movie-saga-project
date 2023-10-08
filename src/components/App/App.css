@@ -16,6 +16,7 @@
   font-size: 1.5em;
 }
 
+
 .App-intro {
   font-size: large;
 }
@@ -87,6 +88,7 @@ nav ul li a:hover {
   padding: 10px 20px;
   background-color: rgb(2, 2, 2);
   margin-bottom: 20px;
+ 
 }
 
 .addMovieButton:hover {
@@ -116,6 +118,15 @@ nav ul li a:hover {
   height: 100%; /* Slide in a semi-transparent background from the top on hover */
   transform: translateY(0);
   z-index: -1;
+}
+
+
+.custom-textarea::placeholder {
+  /* Set the font properties to match the rest of the text */
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
 }
 
 
