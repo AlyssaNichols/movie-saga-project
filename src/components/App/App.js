@@ -27,8 +27,10 @@ function App() {
           </ul>
         </nav>
         <Route path="/" exact>
-          <AddMovie />
           <MovieList />
+        </Route>
+        <Route path="/addMovie" exact>
+          <AddMovie />
         </Route>
         <Route path="/details/:id" exact>
           <MovieDetails />

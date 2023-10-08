@@ -71,6 +71,51 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-  color: #ca6cc6; /* Change color on hover */
+  color: #ec5be5; /* Change color on hover */
 }
+
+.addMovieButton {
+  font-size: 26px;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
+  cursor: pointer;
+  outline: none;
+  transition: 0.2s all;
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 10px 20px;
+  background-color: rgb(2, 2, 2);
+  margin-bottom: 20px;
+}
+
+.addMovieButton:hover {
+  background-color: #f555ed;
+  transform: scale(1.03); /* Slightly scale up on hover */
+}
+
+.addMovieButton:active {
+  transform: scale(0.93); /* Slightly scale down on click */
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24); /* Lowering the shadow */
+}
+
+.addMovieButton::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: 0.3s all;
+  z-index: -1;
+  transform: translateY(100%);
+}
+
+.addMovieButton:hover::before {
+  height: 100%; /* Slide in a semi-transparent background from the top on hover */
+  transform: translateY(0);
+  z-index: -1;
+}
+
 

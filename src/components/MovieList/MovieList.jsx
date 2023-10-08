@@ -6,9 +6,9 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 import { makeStyles } from "@mui/styles";
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteIcon from "@mui/icons-material/Delete";
 
 function MovieList() {
   const history = useHistory();
@@ -42,6 +42,11 @@ function MovieList() {
   return (
     <main>
       <h1>Movie List</h1>
+      <button className="addMovieButton"
+        onClick={() => history.push(`/addMovie/`)}
+      >
+        Add Movie Form
+      </button>
       <section className="movies">
         {movieList.map((movie) => {
           return (
@@ -59,24 +64,24 @@ function MovieList() {
                   alt={movie.title}
                   image={movie.poster}
                   title={movie.title}
-                  
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
                     {movie.title}
                   </Typography>
-      
                 </CardContent>
               </Card>
               <Button
-                  variant="outlined"
-                  color="error"
-                  style={{ marginTop: "-30px", marginBottom: "40px"}}
-                  startIcon={<DeleteIcon />}
-                  onClick={() => dispatch({ type: "DELETE_MOVIE", payload: movie.id })}
-                >
-                  Delete
-                </Button>
+                variant="outlined"
+                color="error"
+                style={{ marginTop: "-30px", marginBottom: "40px" }}
+                startIcon={<DeleteIcon />}
+                onClick={() =>
+                  dispatch({ type: "DELETE_MOVIE", payload: movie.id })
+                }
+              >
+                Delete
+              </Button>
             </div>
           );
         })}
@@ -86,5 +91,3 @@ function MovieList() {
 }
 
 export default MovieList;
-
-
