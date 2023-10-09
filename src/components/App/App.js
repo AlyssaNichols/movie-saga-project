@@ -1,16 +1,23 @@
+import { useEffect } from "react";
 import { HashRouter as Router, Route, NavLink } from "react-router-dom";
 import "./App.css";
 import MovieList from "../MovieList/MovieList";
 import MovieDetails from "../MovieDetails/MovieDetails";
 import AddMovie from "../AddMovie/AddMovie";
-// import EditDetails from "../EditDetails/EditDetails";
-
+import EditDetails from "../EditDetails/EditDetails";
+import { useDispatch } from 'react-redux';
 
 // navbar has title
 // navbar has links to home, add movie, and details page
 // details page will be blank unless a movie is clicked on first
 // probably don't need the details link for functionality but I just kept it in for ease to get around
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch({ type: "FETCH_MOVIES" });
+  }, []);
+
   return (
     <div className="App">
       <h1 className="mainHeader"></h1>
@@ -46,9 +53,9 @@ function App() {
         <Route path="/details/:id" exact>
           <MovieDetails />
         </Route>
-        {/* <Route path="/edit/:id" exact>
-        <EditDetails />
-        </Route> */}
+        <Route path="/edit/:movieId" exact>
+          <EditDetails />
+        </Route>
       </Router>
     </div>
   );

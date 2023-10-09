@@ -18,17 +18,22 @@ function* rootSaga() {
   yield takeEvery("FETCH_GENRES", fetchGenres);
   yield takeEvery("ADD_MOVIE", addMovie);
   yield takeEvery("DELETE_MOVIE", deleteMovie);
-  // yield takeEvery("FETCH_EDIT_MOVIE"), editMovieDetails;
+  yield takeEvery("EDIT_MOVIE", editMovieDetails);
 }
 
-// function* editMovieDetails(action) {
-//   try {
-//     yield axios.put(`/api/edit/${action.payload}`);
-//     yield put({ type: "SET_EDIT_MOVIE" });
-//   } catch (err) {
-//     console.log("Error in editing movie", err);
-//   }
-// }
+function* editMovieDetails(action) {
+  try {
+    // action.payload should be the whole movie: { id, title, description, poster }
+    yield axios.put(`/api/details/${action.payload.id}`, action.payload);
+    yield put({ type: "FETCH_MOVIE_DETAILS", payload: action.payload.id });
+    yield put({ type: "FETCH_MOVIES" });
+    // Push the user to a new page
+    // action.payload.callback();
+
+  } catch (err) {
+    console.log("Error in editing movie", err);
+  }
+}
 
 function* deleteMovie(action) {
   try {

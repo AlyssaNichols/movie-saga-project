@@ -35,7 +35,7 @@ export default function MovieDetails() {
 
   function editDetails() {
     history.push(`/edit/${paramsObject.id}`);
-    dispatch({ type: "SET_EDIT_MOVIE", payload: student });
+    // dispatch({ type: "SET_EDIT_MOVIE", payload:  });
   }
 
   // if no movie title is selected (so basically using the navbar to go to movie details) -
@@ -104,13 +104,13 @@ export default function MovieDetails() {
                   >
                     Back to List
                   </Button> {""}
-                  {/* <Button
+                  <Button
                     variant="contained"
                     color="error"
                     onClick={editDetails}
                   >
                     Edit Details
-                  </Button> */}
+                  </Button>
                 </CardContent>
               </Card>
             </Grid>
