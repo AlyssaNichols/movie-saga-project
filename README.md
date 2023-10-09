@@ -35,7 +35,7 @@ This page shows all the details **including ALL genres** for the selected movie,
 
 This page shows an input for to add a movie to the Movie list
 
-- This form includes an input for Movie Title, Poster Image Url, Description, and a dropdown for the Genre.
+- This form includes an input for a Movie Title, Poster Image Url, Description, and a dropdown selector for the Genre.
 - The add movie page has a `cancel` button, which will clear the inputs and bring the user back to the Home/List Page.
 - The add movie page has a `save` button, which will save the input information in the database and clear the input fields. It will also bring the user back to the Home/List Page and display the newly added movie.
 

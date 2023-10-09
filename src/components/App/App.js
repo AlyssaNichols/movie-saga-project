@@ -8,6 +8,7 @@ import AddMovie from "../AddMovie/AddMovie";
 // navbar has title
 // navbar has links to home, add movie, and details page
 // details page will be blank unless a movie is clicked on first
+// probably don't need the details link for functionality but I just kept it in for ease to get around
 function App() {
   return (
     <div className="App">
