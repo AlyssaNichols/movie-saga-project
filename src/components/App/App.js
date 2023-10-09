@@ -3,6 +3,7 @@ import "./App.css";
 import MovieList from "../MovieList/MovieList";
 import MovieDetails from "../MovieDetails/MovieDetails";
 import AddMovie from "../AddMovie/AddMovie";
+// import EditDetails from "../EditDetails/EditDetails";
 
 
 // navbar has title
@@ -46,6 +47,7 @@ function App() {
           <MovieDetails />
         </Route>
         {/* <Route path="/edit/:id" exact>
+        <EditDetails />
         </Route> */}
       </Router>
     </div>
