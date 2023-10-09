@@ -66,6 +66,7 @@ This page shows an input for to add a movie to the Movie list
 - GitHub
 - VScode
 - Nodemon (for development)
+- Sweet Alerts
 
 ### Acknowledgement
 
