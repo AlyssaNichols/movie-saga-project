@@ -28,6 +28,8 @@ This view displays all of the movies in the movie database.
 This page shows all the details **including ALL genres** for the selected movie, including title, description, and the image, too!
 
 - Sagas and redux were used for the data management.
+- Edit details button brings the user to a edit page with all of the information pre-filled out so its easy to make edits.
+- From there the user can either save or cancel the edit and it will return them back to the details view.
 - The details page has a `Back to List` button, which will bring the user to the Home/List Page.
 - The details view remains when the refresh button is clicked.
 
