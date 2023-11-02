@@ -28,11 +28,20 @@ export default function AddMovie() {
   const addMovie = () => {
     // make sure all text fields are filled
     if (!title || !poster || !description || !genre || genre === 0) {
-      alert("Please make sure all fields are filled in before submitting!");
-    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please make sure all fields are filled in before submitting!',
+      });
+    }   else {
       dispatch({
         type: "ADD_MOVIE",
         payload: { title, poster, description, genre_id: genre },
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Movie Added',
+        text: 'Your movie has been added successfully!',
       });
       // head back to home page after
       history.push("/");

@@ -65,13 +65,22 @@ export default function EditDetails(props) {
    const editMovie = () => {
       // make sure all text fields are filled
       if (!title || !poster || !description) {
-         alert("Please make sure all fields are filled in before submitting!");
-      } else {
+         Swal.fire({
+           icon: 'error',
+           title: 'Oops...',
+           text: 'Please make sure all fields are filled in before submitting!',
+         });
+       }  else {
          dispatch({
            type: "EDIT_MOVIE",
            payload: { title, poster, description, id: movieId },
          //   callback: () => history.push(`/details/${movieId}`)
          });
+         Swal.fire({
+            icon: 'success',
+            title: 'Edit Saved',
+            text: 'Your movie edit has been saved successfully!',
+          });
          // head back to home page after
          history.push(`/details/${movieId}`);
       }
