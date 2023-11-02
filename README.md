@@ -46,8 +46,8 @@ This page shows an input for to add a movie to the Movie list
 1. ![Alt text](mainpage1.png)
 2. ![Alt text](homepage2.png)
 3. ![Alt text](formpage.png)
-4. ![Alt text](detailpage2.png)
-5. ![Alt text](detailpage1.png)
+4. ![Alt text](detailpage1.png)
+5. ![Alt text](detailpage2.png)
 
 ### Built With
 
