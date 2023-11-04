@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";
 import AddIcon from "@mui/icons-material/Add";
+import Swal from "sweetalert2";
 
 export default function AddMovie() {
   const history = useHistory();
