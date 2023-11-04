@@ -53,8 +53,6 @@ export default function MovieDetails() {
     <div>
       <br />
       <h1>{movieDetails.title} Details</h1>
-      <br />
-      <br />
       <Container>
         <Paper elevation={3} style={{ padding: "20px" }}>
           <Grid container spacing={2}>
@@ -116,6 +114,8 @@ export default function MovieDetails() {
             </Grid>
           </Grid>
         </Paper>
+        <br />
+        <br />
       </Container>
     </div>
   );

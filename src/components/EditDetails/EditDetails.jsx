@@ -87,10 +87,12 @@ export default function EditDetails(props) {
    };
    return (
       <>
-         <Container style={{ marginTop: "16px" }}>
-            <Paper elevation={3} style={{ padding: "16px" }}>
+         <center>
+            <br />
+            <br />
+            <Paper elevation={3} style={{ padding: "16px", width: "65%" }}>
                <h1>Editing Movie {title}</h1>
-               <FormControl fullWidth style={{ marginBottom: "16px" }}>
+               <FormControl style={{ width: "90%", marginLeft: "auto", marginRight: "auto", marginBottom: "16px" }}>
                   <TextField
                      label="Title"
                      value={title}
@@ -98,7 +100,7 @@ export default function EditDetails(props) {
                      fullWidth
                   />
                </FormControl>
-               <FormControl fullWidth style={{ marginBottom: "16px" }}>
+               <FormControl style={{ width: "90%", marginLeft: "auto", marginRight: "auto", marginBottom: "16px" }}>
                   <TextField
                      label="Poster Image URL"
                      value={poster}
@@ -106,7 +108,7 @@ export default function EditDetails(props) {
                      fullWidth
                   />
                </FormControl>
-               <FormControl fullWidth style={{ marginBottom: "16px" }}>
+               <FormControl style={{ width: "90%", marginLeft: "auto", marginRight: "auto", marginBottom: "16px" }}>
                   <TextField
                      multiline
                      rows={7}
@@ -146,7 +148,7 @@ export default function EditDetails(props) {
                      <MenuItem value={13}>Superhero</MenuItem>
                   </Select>
                </FormControl> */}
-               <div style={{ display: "flex" }}>
+               <center>
                   <Button
                      variant="contained"
                      style={{
@@ -167,9 +169,10 @@ export default function EditDetails(props) {
                   >
                      Save
                   </Button>
-               </div>
+                  <br />
+               </center>
             </Paper>
-         </Container>
+         </center>
       </>
    )
 }

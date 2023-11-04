@@ -25,7 +25,7 @@ export default function MovieList() {
   const useStyles = makeStyles({
     card: {
       width: "230px",
-      height: "400px",
+      height: "370px",
       marginBottom: "40px",
       backgroundColor: "black",
       borderRadius: "5px",

@@ -60,15 +60,16 @@ export default function AddMovie() {
   };
   // what is being returned on the page
   return (
-    <Container style={{ marginTop: "16px" }}>
-      <Paper elevation={3} style={{ padding: "16px" }}>
-        <h1>Add Movie</h1>
-        <FormControl fullWidth style={{ marginBottom: "16px" }}>
+    <center>
+      <br />
+      <br />
+      <Paper elevation={3} style={{ padding: "16px", width: "65%" }}>
+        <h1>Add New Movie</h1>
+        <FormControl style={{ width: "90%", marginLeft: "auto", marginRight: "auto", marginBottom: "16px" }}>
           <TextField
             label="Title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            fullWidth
           />
         </FormControl>
         <FormControl fullWidth style={{ marginBottom: "16px" }}>
@@ -76,11 +77,11 @@ export default function AddMovie() {
             label="Poster Image URL"
             value={poster}
             onChange={(e) => setPoster(e.target.value)}
-            fullWidth
+            style={{ width: "90%", marginLeft: "auto", marginRight: "auto" }}
           />
         </FormControl>
-        <FormControl fullWidth style={{ marginBottom: "16px" }}>
-          <TextField
+        <FormControl style={{ width: "90%", marginLeft: "auto", marginRight: "auto", marginBottom: "16px" }}>
+          <TextField 
             multiline
             rows={7}
             aria-label="Movie Description"
@@ -95,7 +96,7 @@ export default function AddMovie() {
             }}
           ></TextField>
         </FormControl>
-        <FormControl fullWidth style={{ marginBottom: "16px" }}>
+        <FormControl style={{ width: "90%", marginLeft: "auto", marginRight: "auto", marginBottom: "16px" }}>
           <InputLabel htmlFor="genre">Genre</InputLabel>
           <Select
             id="genre"
@@ -119,7 +120,7 @@ export default function AddMovie() {
             <MenuItem value={13}>Superhero</MenuItem>
           </Select>
         </FormControl>
-        <div style={{ display: "flex" }}>
+        <center>
           <Button
             variant="contained"
             style={{
@@ -140,8 +141,9 @@ export default function AddMovie() {
           >
             Save
           </Button>
-        </div>
+          <br />
+        </center>
       </Paper>
-    </Container>
+    </center>
   );
 }
